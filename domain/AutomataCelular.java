@@ -34,9 +34,16 @@ public class AutomataCelular{
     }
 
     public void algunosElementos(){
+        this.automata[1][1] = new Celula(this, 1, 1);
+        this.automata[2][2] = new Celula(this, 2, 2); 
     }
     
     public void ticTac(){
+        this.automata[1][1].decida();
+        this.automata[1][1].cambie();          
+        
+        this.automata[2][2].decida();
+        this.automata[2][2].cambie();
     }
 
 }

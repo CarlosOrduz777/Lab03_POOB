@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Calefactor
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Calefactor\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=ac\ fila\ columna
+comment1.target=Calefactor(AutomataCelular,\ int,\ int)
+comment2.params=
+comment2.target=int\ forma()
+comment3.params=
+comment3.target=void\ cambie()
+numComments=4

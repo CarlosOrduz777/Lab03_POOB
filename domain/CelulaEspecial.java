@@ -1,7 +1,3 @@
-
-
-
-
 package domain;
 import java.util.ArrayList;
 import java.awt.Color;
@@ -16,6 +12,12 @@ public class CelulaEspecial extends Celula{
     private int fila;
     private int columna;
   
+    /**
+     * Constructor for the CelulaEspecial class.
+     * @param The instance of AutomataCelular
+     * @param The row where the cell is placed
+     * @param The column where the cell is placed
+     */
     public CelulaEspecial(AutomataCelular ac,int fila, int columna){
         super(ac,fila,columna);
         color=Color.green;
@@ -73,9 +75,9 @@ public class CelulaEspecial extends Celula{
         for(Elemento e : adjointPositions){
                 if(e.isVivo()){
                     return null;
-                }
-            
+                }            
         }
+        
         int fil = (int) Math.random() * 29;
         int col = (int) Math.random() * 29;
         return new Celula(automata,fil,col);

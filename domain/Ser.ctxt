@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Ser
+comment1.params=
+comment1.target=Ser()
+comment1.text=Crea\ un\ nuevo\ ser\r\n\ \r\n
+comment2.params=
+comment2.target=void\ cumple()
+comment2.text=El\ ser\ cumple\ un\ lapso\ de\ vida\r\n\ \r\n
+comment3.params=
+comment3.target=int\ getEdad()
+comment3.text=Retorna\ la\ edad\ del\ ser\r\n\ \ \ \ @return\ \r\n
+comment4.params=
+comment4.target=boolean\ isVivo()
+comment4.text=Retorna\ si\ est\u00E1\ vivo\r\n\ \ \ \ @return\ verdadero,\ si\ esta\ vivo;\ falso,\ DLC\r\n
+numComments=5
