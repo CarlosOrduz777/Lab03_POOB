@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=CelulaEspecial
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CelulaEspecial\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=ac\ fila\ columna
+comment1.target=CelulaEspecial(AutomataCelular,\ int,\ int)
+comment2.params=
+comment2.target=boolean\ estaSola()
+comment2.text=\r\n\ Determine\ if\ the\ special\ cell\ is\ alone\r\n\ @return\ true\ if\ is\ alone,\ otherwise\ false\r\n
+comment3.params=
+comment3.target=java.util.HashMap\ getPosicionesAdyacentes()
+comment3.text=\r\n\ Returns\ the\ adjoint\ positions\ of\ the\ Special\ cell\ position\r\n\ @return\ the\ adjoint\ positions\r\n
+comment4.params=
+comment4.target=int[][]\ generarPosicionesValidas()
+comment5.params=
+comment5.target=void\ generaCelula()
+comment5.text=\r\n\ if\ the\ special\ cell\ is\ alone,\ it\ generates\ a\ new\ cell\r\n\ @return\ a\ cell\ if\ the\ special\ cell\ is\ alone,\ otherwise\ null\r\n
+comment6.params=
+comment6.target=void\ decida()
+comment6.text=\r\n\ decide\ cual\ ser\u00E1\ el\ estado\ siguiente\r\n
+numComments=7

@@ -34,9 +34,25 @@ public class AutomataCelular{
     }
 
     public void algunosElementos(){
+        Celula indiana = new Celula(this, 1, 1);
+        Celula _007 = new Celula(this, 2, 2);
+        
+        CelulaEspecial agamenon = new CelulaEspecial(this, 3, 3);
+        CelulaEspecial venus = new CelulaEspecial(this, 4, 4);
+        
+        
     }
     
     public void ticTac(){
+        for(int i=0; i<LONGITUD;i++){
+            for(int j=0;j<LONGITUD;j++){
+                if(automata[i][j]!=null){
+                    automata[i][j].decida();
+                    automata[i][j].cambie();
+                }
+            }
+        }
+        
     }
 
 }
