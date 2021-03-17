@@ -22,6 +22,7 @@ public interface Elemento{
   };
   
   default boolean isVivo(){
+      System.out.println("Elemento isVivo()");
       return false;
   }
   

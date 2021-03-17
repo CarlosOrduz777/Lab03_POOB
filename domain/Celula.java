@@ -14,18 +14,22 @@ public class Celula extends Ser implements Elemento{
     private int fila,columna;
 
 
-    /**Crea una célula en la posición (<b>fila,columna</b>) del autómta <b>ac</b>.Toda nueva célula va a estar viva en el estado siguiente.
+    /**Crea una célula en la posición (<b>fila,columna</b>) del autómta <b>ac</b>.
+     * Toda nueva célula va a estar viva en el estado siguiente.
     @param ac automata celular en el que se va a ubicar la nueva célula
     @param fila fila en el automata celular
     @param columna columna en el automata celula
      */
     public Celula(AutomataCelular ac,int fila, int columna){
-        automata=ac;
-        this.fila=fila;
-        this.columna=columna;
-        estadoSiguiente=Ser.VIVO;
-        automata.setElemento(fila,columna,(Elemento)this);  
-        color=Color.blue;
+        this.automata = ac;
+        
+        this.fila = fila;
+        this.columna = columna;
+        
+        this.estadoSiguiente = Ser.VIVO;
+        
+        //automata.setElemento(fila,columna,(Elemento)this);  
+        color = Color.blue;
     }
 
     /**Retorna la fila del automata en que se encuentra 
@@ -36,11 +40,15 @@ public class Celula extends Ser implements Elemento{
     }
 
     /**Retorna la columna del automata en que se encuentra
-    @return 
+        @return 
      */
     public final int getColumma(){
         return columna;
     }
+    
+    /**
+     * 
+     */
     public final void setEstadoSiguiente(char es){
         this.estadoSiguiente = es;
     }
