@@ -67,4 +67,8 @@ public class Celula extends Ser implements Elemento{
         cumple();
         estado=estadoSiguiente;
     }
+
+    public AutomataCelular getAutomata(){
+        return this.automata;
+    }
 }

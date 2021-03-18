@@ -6,7 +6,7 @@ package domain;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.util.Random;
-import java.util.HashMap;
+
 /**
  * Write a description of class CelulaEspecial here.
  * 
@@ -14,12 +14,13 @@ import java.util.HashMap;
  * @version (a version number or a date)
  */
 public class CelulaEspecial extends Celula{
-    private AutomataCelular automata;
     private int fila;
     private int columna;
   
     public CelulaEspecial(AutomataCelular ac,int fila, int columna){
         super(ac,fila,columna);
+        this.fila = fila;
+        this.columna = columna;
         color=Color.green;
         
     }
@@ -32,38 +33,16 @@ public class CelulaEspecial extends Celula{
         ArrayList<int[]> adjointPositions = generarPosicionesValidas();
         
         for(int[] ap: adjointPositions){
-            if(automata.getElemento(ap[0], ap[1]).isVivo()){
-                return false;
+            if(getAutomata().getElemento(ap[0], ap[1])!=null){
+                if(getAutomata().getElemento(ap[0], ap[1]).isVivo()){
+                    return false;
+                }
             }
         }
         return true;
     }
     
-    
-    /**
-     * Returns the adjoint positions of the Special cell position
-     * @return the adjoint positions
-     */
-    public ArrayList<int[]> getPosicionesAdyacentes(int i,int j){
-        ArrayList <int[]> result = new ArrayList<>();
-        int[] coordenada_i = {0,1,1,1,0,-1,-1,-1};
-        int[] coordenada_j = {1,1,0,-1,-1,-1,0,1};
-        int nueva_posicion_fila = 0;
-        int nueva_posicion_columna = 0;
-        for(int k=0; k<8; k++){
-            nueva_posicion_fila = i + coordenada_i[k];
-            nueva_posicion_columna = j + coordenada_j[k];
-            
-            if( ((0 <= nueva_posicion_fila) && (nueva_posicion_fila < 30)) && 
-            ((0<= nueva_posicion_columna) && (nueva_posicion_columna < 30))){
-                int[] posicion = {nueva_posicion_fila,nueva_posicion_columna};
-                result.add(posicion);
-                
-            }
-            
-        }
-        return result;
-    }
+
     
     public ArrayList<int[]> generarPosicionesValidas(){
         ArrayList<int[]> result = new ArrayList<>();
@@ -79,6 +58,8 @@ public class CelulaEspecial extends Celula{
             (0<= nueva_posicion_columna) && (nueva_posicion_columna < 30)){
                 int[] posicion = {nueva_posicion_fila,nueva_posicion_columna};
                 result.add(posicion);
+                
+
             }
             
         }
@@ -95,19 +76,36 @@ public class CelulaEspecial extends Celula{
             ArrayList<int[]> positions = generarPosicionesValidas();
             int[] temp = positions.get(r.nextInt(positions.size()));
             
-            System.out.println(temp[0]+"-"+temp[1]);
-            new Celula(automata,temp[0],temp[1]);
+            new Celula(getAutomata(),temp[0],temp[1]);
             
         }
         
        
+    }
+
+    public boolean rodeadoCelulasMuertas(){
+        ArrayList<int[]> positions = generarPosicionesValidas();
+        boolean muere = true;
+        for(int[] p: positions){
+            if(getAutomata().getElemento(p[0], p[1])!=null){
+                muere = muere && (!getAutomata().getElemento(p[0], p[1]).isVivo() && getAutomata().getElemento(p[0], p[1]) instanceof Celula);
+            }else{
+                muere = false;
+            }
+
+        }
+        return muere;
     }
     /**
      * decide cual será el estado siguiente
      */
     public void decida(){
         generaCelula();
+        if(rodeadoCelulasMuertas()){
+            estadoSiguiente = Ser.MUERTO;
+        }
     }
+
     
 }
 

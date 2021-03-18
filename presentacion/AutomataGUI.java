@@ -65,7 +65,8 @@ public class AutomataGUI extends JFrame{
     public static void main(String[] args) {
         AutomataGUI ca=new AutomataGUI();
         ca.setVisible(true);
-    }  
+    }
+
 }
 
 class FotoAutomata extends JPanel{

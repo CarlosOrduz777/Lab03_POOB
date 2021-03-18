@@ -9,7 +9,7 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public final class Calefactor implements Elemento{
-    private Color color;
+    protected Color color;
     private AutomataCelular automata;
     private int fila;
     private int columna;
@@ -18,18 +18,21 @@ public final class Calefactor implements Elemento{
         automata = ac;
         this.fila = fila;
         this.columna = columna;
-        color = Color.red;
+        color = Color.RED;
+        this.automata.setElemento(fila,columna, (Elemento)this);
     }
     
     public int forma(){
         return CUADRADA;
     }
-    
+    public Color getColor(){
+        return this.color;
+    }
     public void cambie(){
-        if(this.getColor().equals(Color.red)){
-            color = Color.yellow;
+        if(this.getColor().equals(Color.RED)){
+            color = Color.YELLOW;
         }else{
-            color = Color.red;
+            color = Color.RED;
         }
     }
 }
