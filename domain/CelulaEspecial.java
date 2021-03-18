@@ -5,6 +5,8 @@
 package domain;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.util.Random;
+
 /**
  * Write a description of class CelulaEspecial here.
  * 
@@ -12,12 +14,13 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class CelulaEspecial extends Celula{
-    private AutomataCelular automata;
     private int fila;
     private int columna;
   
     public CelulaEspecial(AutomataCelular ac,int fila, int columna){
         super(ac,fila,columna);
+        this.fila = fila;
+        this.columna = columna;
         color=Color.green;
         
     }
@@ -27,36 +30,36 @@ public class CelulaEspecial extends Celula{
      * @return true if is alone, otherwise false
      */
     public boolean estaSola(){
-        ArrayList<Elemento> adjointPositions = getPosicionesAdyacentes();
+        ArrayList<int[]> adjointPositions = generarPosicionesValidas();
         
-        for(Elemento e: adjointPositions){
-            if(e.isVivo()){
-                return false;
+        for(int[] ap: adjointPositions){
+            if(getAutomata().getElemento(ap[0], ap[1])!=null){
+                if(getAutomata().getElemento(ap[0], ap[1]).isVivo()){
+                    return false;
+                }
             }
         }
-        
         return true;
     }
     
+
     
-    /**
-     * Returns the adjoint positions of the Special cell position
-     * @return the adjoint positions
-     */
-    public ArrayList<Elemento> getPosicionesAdyacentes(){
-        ArrayList <Elemento> result = new ArrayList<>();
-        int[] coordenada_i = {0,1,1,1,0,-1,-1,-1};
-        int[] coordenada_j = {1,1,0,-1,-1,-1,0,1};
+    public ArrayList<int[]> generarPosicionesValidas(){
+        ArrayList<int[]> result = new ArrayList<>();
+        int[] coordenada_i = {-1,0,0,1};
+        int[] coordenada_j = {0,-1,1,0};
         int nueva_posicion_fila = 0;
         int nueva_posicion_columna = 0;
-        for(int k=0; k<8; k++){
+        for(int k=0; k<4; k++){
             nueva_posicion_fila = fila + coordenada_i[k];
             nueva_posicion_columna = columna + coordenada_j[k];
             
-            if((0 <= nueva_posicion_fila) && (nueva_posicion_fila < automata.getAutomata().length) && 
-            (0<= nueva_posicion_columna) && (nueva_posicion_columna < automata.getAutomata()[0].length)){
-                result.add(automata.getElemento(nueva_posicion_fila,nueva_posicion_columna));
+            if((0 <= nueva_posicion_fila) && (nueva_posicion_fila < 30) && 
+            (0<= nueva_posicion_columna) && (nueva_posicion_columna < 30)){
+                int[] posicion = {nueva_posicion_fila,nueva_posicion_columna};
+                result.add(posicion);
                 
+
             }
             
         }
@@ -67,30 +70,42 @@ public class CelulaEspecial extends Celula{
      * if the special cell is alone, it generates a new cell
      * @return a cell if the special cell is alone, otherwise null
      */
-    public Celula generaCelula(){
-        ArrayList<Elemento> adjointPositions = getPosicionesAdyacentes();
-        
-        for(Elemento e : adjointPositions){
-                if(e.isVivo()){
-                    return null;
-                }
+    public void generaCelula(){
+        Random r = new Random();
+        if(this.estaSola()){
+            ArrayList<int[]> positions = generarPosicionesValidas();
+            int[] temp = positions.get(r.nextInt(positions.size()));
+            
+            new Celula(getAutomata(),temp[0],temp[1]);
             
         }
-        int fil = (int) Math.random() * 29;
-        int col = (int) Math.random() * 29;
-        return new Celula(automata,fil,col);
+        
+       
+    }
+
+    public boolean rodeadoCelulasMuertas(){
+        ArrayList<int[]> positions = generarPosicionesValidas();
+        boolean muere = true;
+        for(int[] p: positions){
+            if(getAutomata().getElemento(p[0], p[1])!=null){
+                muere = muere && (!getAutomata().getElemento(p[0], p[1]).isVivo() && getAutomata().getElemento(p[0], p[1]) instanceof Celula);
+            }else{
+                muere = false;
+            }
+
+        }
+        return muere;
     }
     /**
      * decide cual será el estado siguiente
      */
     public void decida(){
-        if(this.generaCelula() == null){
-           estadoSiguiente = Ser.MUERTO; 
-        }else{
-            estadoSiguiente = Ser.VIVO;
-            this.generaCelula();
+        generaCelula();
+        if(rodeadoCelulasMuertas()){
+            estadoSiguiente = Ser.MUERTO;
         }
     }
+
     
 }
 

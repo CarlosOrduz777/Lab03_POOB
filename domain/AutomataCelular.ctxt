@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=AutomataCelular
+comment0.text=No\ olviden\ adicionar\ la\ documentacion
+comment1.params=
+comment1.target=AutomataCelular()
+comment2.params=
+comment2.target=int\ getLongitud()
+comment3.params=f\ c
+comment3.target=Elemento\ getElemento(int,\ int)
+comment4.params=
+comment4.target=Elemento[][]\ getAutomata()
+comment5.params=f\ c\ nueva
+comment5.target=void\ setElemento(int,\ int,\ Elemento)
+comment6.params=
+comment6.target=void\ algunosElementos()
+comment7.params=
+comment7.target=void\ ticTac()
+numComments=8

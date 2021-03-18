@@ -8,7 +8,7 @@ import java.awt.Color;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Bacteria extends Ser implements Elemento{
+public class Bacteria extends Celula implements Elemento{
     
     protected char estadoSiguiente;
     protected Color color;
@@ -17,12 +17,8 @@ public class Bacteria extends Ser implements Elemento{
     private AutomataCelular automata;
     
     public Bacteria(AutomataCelular ac, int fila, int columna){
-        automata = ac;
-        this.fila = fila;
-        this.columna = columna;
-        estadoSiguiente = Ser.MUERTO;
+        super(ac,fila,columna);
         color = Color.orange;
-        
     }
     
     /**
